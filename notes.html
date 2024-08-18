@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ben Adelman - Book Notes</title>
+    <link rel="stylesheet" href="notes.css">
+    <script src="https://cdn.jsdelivr.net/npm/@webcomponents/webcomponentsjs@2/webcomponents-loader.min.js"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/gh/zerodevx/zero-md@1/src/zero-md.min.js"></script>
+</head>
+<body>
+    <div class="topnav">
+        <a class="active" href="home.html">Home</a>
+        <a href="notes.html">Notes</a>
+        <a href="contact.html">Contact</a>
+        <a href="images/resume.pdf" target="_blank">Resume</a>
+        <a href="https://github.com/bena777" target="_blank" class="gitlogo">
+            <img class="gitlogo" src="images/github.png" alt="GitLogo">
+        </a>
+        <a href="https://www.linkedin.com/in/benjamin-adelman" target="_blank" class="gitlogo">
+            <img class="gitlogo" src="images/linkedin.webp" alt="LinkedinLogo">
+        </a>
+    </div>
+    <div class="intro">
+        <h1>Book Notes</h1>
+        <p>Welcome to my collection of book notes. Click on the titles to view detailed notes.</p>
+    </div>
+    <div class="notes_container">
+        <section class="book_section">
+            <h2>Philosophy</h2>
+            <ul>
+                <li><zero-md src="notes/Meditations.md" class="markdown-link">Meditations by Marcus Aurelius</zero-md></li>
+                <li><a href="notes/The_Myth_of_Sisyphus.md" class="markdown-link">The Myth of Sisyphus by Albert Camus</a></li>
+            </ul>
+        </section>
+        <section class="book_section">
+            <h2>Finance</h2>
+            <ul>
+                <li><a href="notes/The Misbehavior of Markets.md" class="markdown-link">The Misbehavior of Markets by Benoit Mandelbrot</a></li>
+                <li><a href="notes/Volatility Trading Sinclair.md" class="markdown-link">Volatility Trading by Euan Sinclair</a></li>
+            </ul>
+        </section>
+        <section class="book_section">
+            <h2>Fiction</h2>
+            <ul>
+                <li><a href="notes/Kafka on the Shore.md" class="markdown-link">Kafka on the Shore by Haruki Murakami</a></li>
+                <li><a href="notes/The Wind Up Bird Chronicle.md" class="markdown-link">The Wind Up Bird Chronicle by Haruki Murakami</a></li>
+                <li><a href="notes/The Plague.md" class="markdown-link">The Plague by Albert Camus</a></li>
+                <li><a href="notes/Picture of Dorian Gray.md" class="markdown-link">Picture of Dorian Gray by Oscar Wilde</a></li>
+            </ul>
+        </section>
+        <section class="book_section">
+            <h2>Social Science</h2>
+            <ul>
+                <li><a href="notes/A_Brief_History_of_Time.md">A Brief History of Time by Stephen Hawking</a></li>
+                <li><a href="notes/The_Selfish_Gene.md">The Selfish Gene by Richard Dawkins</a></li>
+            </ul>
+        </section>
+        <section class="book_section">
+            <h2>Msc.</h2>
+            <ul>
+                <li><a href="notes/Riichi Mahjong (book).md">Riichi Mahjong Book I by __</a></li>
+                <li><a href="notes/Statistical Mahjong Strategy.md">Statistical Mahjong Strategy by __</a></li>
+            </ul>
+        </section>
+    </div>
+    <div id="markdown-content">
+        <!-- Markdown content will be loaded here -->
+    </div>
+    <script>
+        document.querySelectorAll('.markdown-link').forEach(link => {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+                const url = this.getAttribute('href');
+                fetch(url)
+                    .then(response => response.text())
+                    .then(text => {
+                        document.getElementById('markdown-content').innerHTML = marked(text);
+                    })
+                    .catch(error => {
+                        document.getElementById('markdown-content').innerHTML = 'Error loading Markdown file.';
+                        console.error('Error fetching the Markdown file:', error);
+                    });
+            });
+        });
+    </script>
+</body>
+</html>
