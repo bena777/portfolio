@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>View Note</title>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f4f4f4;
+        }
+        #markdown-content {
+            width: 100%;
+            max-width: 1200px;
+            padding: 20px;
+            box-sizing: border-box;
+            background: #fff;
+            border-radius: 8px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="markdown-content">Loading...</div>
+    <script>
+        function getQueryParam(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+        function loadMarkdown(file) {
+            fetch(file)
+                .then(response => response.text())
+                .then(text => {
+                    document.getElementById('markdown-content').innerHTML = marked(text);
+                })
+                .catch(error => {
+                    document.getElementById('markdown-content').innerHTML = 'Error loading Markdown file.';
+                    console.error('Error fetching the Markdown file:', error);
+                });
+        }
+
+        const file = getQueryParam('file');
+        if (file) {
+            loadMarkdown(file);
+        } else {
+            document.getElementById('markdown-content').innerHTML = 'No file specified.';
+        }
+    </script>
+</body>
+</html>
