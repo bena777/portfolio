@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Ben Adelman - Book Notes</title>
-    <link rel="stylesheet" href="styles/notes.css">
-    <script src="https://cdn.jsdelivr.net/npm/@webcomponents/webcomponentsjs@2/webcomponents-loader.min.js"></script>
-    <script type="module" src="https://cdn.jsdelivr.net/gh/zerodevx/zero-md@1/src/zero-md.min.js"></script>
+    <link rel="stylesheet" href="notes.css">
 </head>
 <body>
     <div class="topnav">
@@ -30,14 +28,14 @@
         <section class="book_section">
             <h2>Philosophy</h2>
             <ul>
-                <li><zero-md src="notes/Meditations.md" class="markdown-link">Meditations by Marcus Aurelius</zero-md></li>
+                <li><a src="notes/Meditations.pdf" class="markdown-link">Meditations by Marcus Aurelius</a></li>
                 <li><a href="notes/The_Myth_of_Sisyphus.md" class="markdown-link">The Myth of Sisyphus by Albert Camus</a></li>
             </ul>
         </section>
         <section class="book_section">
             <h2>Finance</h2>
             <ul>
-                <li><a href="notes.html?file=notes/The Misbehavior of Markets.md" class="markdown-link">The Misbehavior of Markets by Benoit Mandelbrot</a></li>
+                <li><a href="notes/The Misbehavior of Markets.md" class="markdown-link">The Misbehavior of Markets by Benoit Mandelbrot</a></li>
                 <li><a href="notes/Volatility Trading Sinclair.md" class="markdown-link">Volatility Trading by Euan Sinclair</a></li>
             </ul>
         </section>
@@ -65,25 +63,5 @@
             </ul>
         </section>
     </div>
-    <div id="markdown-content">
-        <!-- Markdown content will be loaded here -->
-    </div>
-    <script>
-        document.querySelectorAll('.markdown-link').forEach(link => {
-            link.addEventListener('click', function(event) {
-                event.preventDefault();
-                const url = this.getAttribute('href');
-                fetch(url)
-                    .then(response => response.text())
-                    .then(text => {
-                        document.getElementById('markdown-content').innerHTML = marked(text);
-                    })
-                    .catch(error => {
-                        document.getElementById('markdown-content').innerHTML = 'Error loading Markdown file.';
-                        console.error('Error fetching the Markdown file:', error);
-                    });
-            });
-        });
-    </script>
 </body>
 </html>
